@@ -112,7 +112,7 @@
 */
 //
 
-#if !( defined(ARDUINO_PORTENTA_H7_M7) || defined(ARDUINO_PORTENTA_H7_M4) )
+#if !( defined(ARDUINO_PORTENTA_H7_M7) || defined(ARDUINO_PORTENTA_H7_M4) || defined(ARDUINO_GIGA) )
   #error For Portenta_H7 only
 #endif
 
@@ -136,6 +136,15 @@
 
 // Only OK for D0, D1, D2, D4 and D5, PA_0C(D15/A0), PA_1C(D16/A1), 
 // D3, D6, D7, D8, D9, D10, D11, D12, D13, D14, D17(PC_2C/A2), D18(PC_3C/3), PC2(D19/A4) LEDG, LEDB not OK
+#if defined(ARDUINO_GIGA)
+#define pin0    D2
+#define pin1    D3
+#define pin2    D4    //D2
+#define pin3    D4
+#define pin4    D5
+#define pin5    D6
+#define pin6    D7
+#else
 #define pin0    D0
 #define pin1    D1
 #define pin2    D2    //D2
@@ -143,6 +152,7 @@
 #define pin4    D5
 #define pin5    PA_0C
 #define pin6    PA_1C
+#endif
 
 uint32_t pins[]       = { pin0, pin1, pin2, pin3, pin4, pin5, pin6 };
 

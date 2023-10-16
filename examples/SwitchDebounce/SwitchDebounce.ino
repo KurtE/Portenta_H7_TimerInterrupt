@@ -30,7 +30,7 @@
    SW is released.
 */
 
-#if !( ( defined(ARDUINO_PORTENTA_H7_M7) || defined(ARDUINO_PORTENTA_H7_M4) ) && defined(ARDUINO_ARCH_MBED) )
+#if !( ( defined(ARDUINO_PORTENTA_H7_M7) || defined(ARDUINO_PORTENTA_H7_M4) || defined(ARDUINO_GIGA) ) && defined(ARDUINO_ARCH_MBED) )
   #error This code is designed to run on Portenta_H7 platform! Please check your Tools->Board setting.
 #endif
 

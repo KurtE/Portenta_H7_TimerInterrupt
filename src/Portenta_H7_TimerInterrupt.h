@@ -27,7 +27,8 @@
 #ifndef PORTENTA_H7_TIMERINTERRUPT_H
 #define PORTENTA_H7_TIMERINTERRUPT_H
 
-#if ( ( defined(ARDUINO_PORTENTA_H7_M7) || defined(ARDUINO_PORTENTA_H7_M4) ) && defined(ARDUINO_ARCH_MBED) )
+#if !defined(ARDUINO_GIGA)
+#if ( ( defined(ARDUINO_PORTENTA_H7_M7) || defined(ARDUINO_PORTENTA_H7_M4) || defined(ARDUINO_GIGA) ) && defined(ARDUINO_ARCH_MBED) )
   #warning Use MBED ARDUINO_PORTENTA_H7 and LittleFS
 
   #if defined(BOARD_NAME)
@@ -44,6 +45,7 @@
 
 #else
   #error This code is intended to run on the MBED ARDUINO_PORTENTA_H7 platform! Please check your Tools->Board setting.
+#endif
 #endif
 
 #ifndef PORTENTA_H7_TIMER_INTERRUPT_VERSION

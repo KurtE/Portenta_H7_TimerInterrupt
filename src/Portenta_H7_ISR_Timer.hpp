@@ -27,7 +27,7 @@
 #ifndef ISR_TIMER_GENERIC_HPP
 #define ISR_TIMER_GENERIC_HPP
 
-#if !( ( defined(ARDUINO_PORTENTA_H7_M7) || defined(ARDUINO_PORTENTA_H7_M4) ) && defined(ARDUINO_ARCH_MBED) )
+#if !( ( defined(ARDUINO_PORTENTA_H7_M7) || defined(ARDUINO_PORTENTA_H7_M4) || defined(ARDUINO_GIGA) ) && defined(ARDUINO_ARCH_MBED) )
   #error This code is intended to run on the MBED ARDUINO_PORTENTA_H7 platform! Please check your Tools->Board setting.
 #endif
 
