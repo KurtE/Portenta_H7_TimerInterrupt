@@ -109,15 +109,20 @@ class Portenta_H7_TimerInterrupt
         delete _hwTimer;
     }
 
+    // temporary for debug...
+    HardwareTimer* hwtimer() { return _hwTimer;}
+
 #define TIM_CLOCK_FREQ      ( (float) 1000000.0f )
 
     // frequency (in hertz) and duration (in milliseconds). Duration = 0 or not specified => run indefinitely
     // No params and duration now. To be addes in the future by adding similar functions here or to STM32-hal-timer.c
     bool setFrequency(float frequency, timerCallback callback)
     {
+      TISR_LOGINFO1("setFrequency - FREQ: ", frequency);
+      TISR_LOGINFO1("\t callback: ", (uint32_t)callback);
       if ( (frequency == 0.0f) || (frequency > 100000.0f) || (callback == NULL) )
       {
-        TISR_LOGERROR(F("Error. frequency == 0, higher than 100KHz or callback == NULL "));
+        TISR_LOGERROR1(F("Error. frequency == 0, higher than 100KHz or callback == NULL : "), frequency);
 
         return false;
       }

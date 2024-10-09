@@ -41,15 +41,15 @@
 #define LED_ON              LOW
 
 #ifndef LED_BUILTIN
-  #define LED_BUILTIN       24    //LEDG               // Pin 24 control on-board LED_GREEN on Portenta_H7
+  #define LED_BUILTIN       LEDG               // Pin 24 control on-board LED_GREEN on Portenta_H7
 #endif
 
 #ifndef LED_BLUE
-  #define LED_BLUE          25    //LEDB               // Pin 25 control on-board LED_BLUE on Portenta_H7
+  #define LED_BLUE          LEDB               // Pin 25 control on-board LED_BLUE on Portenta_H7
 #endif
 
 #ifndef LED_RED
-  #define LED_RED           23   // LEDR              // Pin 23 control on-board LED_RED on Portenta_H7
+  #define LED_RED           LEDR              // Pin 23 control on-board LED_RED on Portenta_H7
 #endif
 
 #define TIMER0_INTERVAL_MS        500
@@ -167,4 +167,42 @@ void loop()
       lastChangeTime = currTime;
     }
   }
+  if (Serial.available()) {
+    while (Serial.read() != -1) {}
+    print_timer_regs(15, TIM15);
+    print_timer_regs(16, TIM16);
+
+  }
+}
+
+void print_timer_regs(uint8_t timer_num, TIM_TypeDef *ptimer) {
+    Serial.print("Timer("); Serial.print(timer_num);
+    Serial.print("): "); Serial.println((uint32_t)ptimer, HEX);
+    Serial.print("\tCR1: "); Serial.print(ptimer->CR1, HEX); Serial.println("\tcontrol register 1");
+    Serial.print("\tCR2: "); Serial.print(ptimer->CR2, HEX); Serial.println("\tcontrol register 2");
+    Serial.print("\tSMCR: "); Serial.print(ptimer->SMCR, HEX); Serial.println("\tslave mode control register");
+    Serial.print("\tDIER: "); Serial.print(ptimer->DIER, HEX); Serial.println("\tDMA/interrupt enable register");
+    Serial.print("\tSR: "); Serial.print(ptimer->SR, HEX); Serial.println("\tstatus register");
+    Serial.print("\tEGR: "); Serial.print(ptimer->EGR, HEX); Serial.println("\tevent generation register");
+    Serial.print("\tCCMR1: "); Serial.print(ptimer->CCMR1, HEX); Serial.println("\tcapture/compare mode register 1");
+    Serial.print("\tCCMR2: "); Serial.print(ptimer->CCMR2, HEX); Serial.println("\tcapture/compare mode register 2");
+    Serial.print("\tCCER: "); Serial.print(ptimer->CCER, HEX); Serial.println("\tcapture/compare enable register");
+    Serial.print("\tCNT: "); Serial.print(ptimer->CNT, HEX); Serial.println("\tcounter register");
+    Serial.print("\tPSC: "); Serial.print(ptimer->PSC, HEX); Serial.println("\tprescaler");
+    Serial.print("\tARR: "); Serial.print(ptimer->ARR, HEX); Serial.println("\tauto-reload register");
+    Serial.print("\tRCR: "); Serial.print(ptimer->RCR, HEX); Serial.println("\trepetition counter register");
+    Serial.print("\tCCR1: "); Serial.print(ptimer->CCR1, HEX); Serial.println("\tcapture/compare register 1");
+    Serial.print("\tCCR2: "); Serial.print(ptimer->CCR2, HEX); Serial.println("\tcapture/compare register 2");
+    Serial.print("\tCCR3: "); Serial.print(ptimer->CCR3, HEX); Serial.println("\tcapture/compare register 3");
+    Serial.print("\tCCR4: "); Serial.print(ptimer->CCR4, HEX); Serial.println("\tcapture/compare register 4");
+    Serial.print("\tBDTR: "); Serial.print(ptimer->BDTR, HEX); Serial.println("\tbreak and dead-time register");
+    Serial.print("\tDCR: "); Serial.print(ptimer->DCR, HEX); Serial.println("\tDMA control register");
+    Serial.print("\tDMAR: "); Serial.print(ptimer->DMAR, HEX); Serial.println("\tDMA address for full transfer");
+    Serial.print("\tCCMR3: "); Serial.print(ptimer->CCMR3, HEX); Serial.println("\tcapture/compare mode register 3");
+    Serial.print("\tCCR5: "); Serial.print(ptimer->CCR5, HEX); Serial.println("\tcapture/compare register5");
+    Serial.print("\tCCR6: "); Serial.print(ptimer->CCR6, HEX); Serial.println("\tcapture/compare register6");
+    Serial.print("\tAF1: "); Serial.print(ptimer->AF1, HEX); Serial.println("\talternate function option register 1");
+    Serial.print("\tAF2: "); Serial.print(ptimer->AF2, HEX); Serial.println("\talternate function option register 2");
+    Serial.print("\tTISEL: "); Serial.print(ptimer->TISEL, HEX); Serial.println("\tInput Selection register");
+
 }
